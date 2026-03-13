@@ -45,9 +45,12 @@ button {
   margin-top: 10px;
 }
 
-#result {
+#result,
+#resultTF {
   margin-top: 20px;
-  font-size: 18px;
+  font-size: 20px;
+  font-weight: bold;
+  min-height: 30px;
 }
 
 .correct {
@@ -145,4 +148,11 @@ button {
 .github-link:hover {
   background: #000;
   transform: translateY(-1px);
+}
+.correct {
+  background: #c8f7c5;
+}
+
+.wrong {
+  background: #ffe5e5;
 }

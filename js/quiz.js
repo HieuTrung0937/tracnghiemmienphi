@@ -52,6 +52,7 @@ function renderQuiz() {
     div.innerHTML = html;
     quiz.appendChild(div);
   });
+  renderTrueFalse();
 }
 function review(wrong) {
   wrong.forEach((i) => {
@@ -68,4 +69,52 @@ function clearWrong(index) {
   if (q) {
     q.classList.remove("wrong");
   }
+}
+function renderTrueFalse() {
+  const quiz = document.getElementById("quiz");
+
+  TrueOrFalseQuestions.forEach((q, index) => {
+    let div = document.createElement("div");
+    div.className = "question";
+
+    let html = `<h3>Câu ${index + 1}: ${q.q}</h3>`;
+
+    const letters = ["A", "B", "C", "D"];
+
+    q.options.forEach((op, i) => {
+      const text = op.replace(/^[A-D]\.\s*/, "");
+
+      html += `
+<label class="option">
+<input type="checkbox" name="tf${index}" value="${i}">
+<b>${letters[i]}.</b> ${text}
+</label>
+`;
+    });
+
+    div.innerHTML = html;
+    quiz.appendChild(div);
+  });
+}
+function gradeTrueFalse() {
+  let score = 0;
+
+  TrueOrFalseQuestions.forEach((q, i) => {
+    let checkboxes = document.querySelectorAll(`input[name="tf${i}"]`);
+
+    let correctCount = 0;
+
+    checkboxes.forEach((box, index) => {
+      let checked = box.checked;
+      let shouldBeTrue = q.answer.includes(index);
+
+      if (checked === shouldBeTrue) {
+        correctCount++;
+      }
+    });
+
+    score += correctCount * 0.25;
+  });
+
+  return score;
 }

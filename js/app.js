@@ -26,6 +26,11 @@ document.getElementById("submit").onclick = function () {
 Sai: ${wrong.length}
 `;
 
+  let scoreTrueFalse = gradeTrueFalse();
+
+  document.getElementById("resultTF").innerHTML =
+    "Điểm phần đúng sai: " + scoreTrueFalse;
+
   review(wrong);
 };
 
